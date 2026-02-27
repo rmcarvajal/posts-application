@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import "./form.css"
 
 export const Form = () => {
 const [data,setData] = useState([])
@@ -35,20 +35,25 @@ const post = async () => {
     } catch (error){
         console.log(error)
     }
+        document.location.reload();
 }
 
     return(
         <>
         <h1>Please fill out the form</h1>
+        <div className="form">
         <input type="text" placeholder="Insert a title" onChange={(event) => setTitle(event.target.value)}/>
         <input type="text" placeholder="Insert description" onChange={(event) => setDesc(event.target.value)}/>
         <input type="text" placeholder="Insert image link" onChange={(event) => setImage(event.target.value)}/>
         <button onClick={post}>Submit</button>
+        </div>
+
         <div>
             {data.map((info)=> (
-                <div>                
+                <div className="item">                
                     <h2>{info.name}</h2>
                     <img src={info.image} width="300" height="300"></img>
+                    <p>{info.email}</p>
                     <button onClick={(e)=> {
                         const response = fetch("https://users-api-sable.vercel.app/api/users/" + info.id, {
                             method:"DELETE"})
@@ -56,6 +61,7 @@ const post = async () => {
                                 if(!res.ok){
                                     throw new Error ("something went wrong x_x")
                                 }
+                                    document.location.reload();
                             })
                     }}>delete</button>
                 </div>
