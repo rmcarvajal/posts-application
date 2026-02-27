@@ -26,7 +26,11 @@ const [data,setData] = useState([])
         <button >Submit</button>
         <div>
             {data.map((info)=> (
-                <h2>{info.name}</h2>
+                <div>                
+                    <h2>{info.name}</h2>
+                    <img src={info.image} width="300" height="300"></img>
+                    
+                </div>
             ))}
         </div>
         </>
