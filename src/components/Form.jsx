@@ -49,7 +49,15 @@ const post = async () => {
                 <div>                
                     <h2>{info.name}</h2>
                     <img src={info.image} width="300" height="300"></img>
-                    
+                    <button onClick={(e)=> {
+                        const response = fetch("https://users-api-sable.vercel.app/api/users/" + info.id, {
+                            method:"DELETE"})
+                            .then((res)=>{
+                                if(!res.ok){
+                                    throw new Error ("something went wrong x_x")
+                                }
+                            })
+                    }}>delete</button>
                 </div>
             ))}
         </div>
